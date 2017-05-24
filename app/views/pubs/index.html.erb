@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <% @pubs.each do |pub| %>
+      <div class="col-xs-12 col-sm-4">
+
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= pub.image_url %>');">
+        <div class="card-category">Pub</div>
+        <div class="card-description">
+          <h2><%= pub.name %></h2>
+          <p><%= (pub.reviews.reduce(0) { |acc, review| acc + review.rating } / pub.reviews.count.to_f).round(2) %></p>
+          <p><%= pub.address %></p>
+        </div>
+        <%= link_to "", pub_path(pub), class: "card-link"  %>
+      </div>
+
+      </div>
+    <% end %>
+  </div>
+</div>

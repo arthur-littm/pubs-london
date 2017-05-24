@@ -1,0 +1,30 @@
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= @pub.image_url %>');">
+  <div class="banner-content">
+    <h1><%= @pub.name %></h1>
+    <p><%= @pub.address %></p>
+    <a class="btn btn-primary btn-lg">GET IT</a>
+  </div>
+</div>
+
+<% @pub.reviews.each do |review| %>
+<div class="product">
+  <div class='product-body'>
+    <h3><%= review.content %></h3>
+    <p><%= review.rating %></p>
+  </div>
+</div>
+<% end %>
+
+<div class="container padding-bottom">
+  <div class="row">
+    <div class="col-xs-6">
+      <%= simple_form_for [@pub, @review] do |f| %>
+      <%= f.input :content %>
+      <%= f.input :rating, collection: (0..5).to_a %>
+      <%= f.submit "Post review", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
